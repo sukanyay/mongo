@@ -1,0 +1,66 @@
+<!-- Steps to go to MongoDB -->
+
+C:\Users\yssuk>cd..
+C:\Users>cd..
+C:\>cd MongoDB
+C:\MongoDB>cd Server
+C:\MongoDB\Server>cd 3.2
+C:\MongoDB\Server\3.2>cd bin
+C:\MongoDB\Server\3.2\bin>mongo
+MongoDB shell version: 3.2.4
+
+<!-- Here I created a Database name called homework
+ -->> use homework
+switched to db homework
+ <!-- Given table name as student and inserted values in it -->
+> student={"Name":"Sai",
+... "Technology":"UI",
+... "Email":"ysk.sukanya@gmail.com"}
+{ "Name" : "Sai", "Technology" : "UI", "Email" : "ysk.sukanya@gmail.com" }
+> db.homework.insert(student)
+WriteResult({ "nInserted" : 1 })
+<!-- To Update -->
+> db.homework.update({"Technology":"UI"},
+... {$set:{"Technology":"UserInterface"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+<!-- To find the value -->
+ db.homework.find().pretty()
+{
+        "_id" : ObjectId("570b2c7f303c6144d623f375"),
+        "Name" : "Sai",
+        "Technology" : "UserInterface",
+        "Email" : "ysk.sukanya@gmail.com"
+}
+<!-- To Delete -->
+db.homework.remove({"Email":"ysk.sukanaya@gmail.com"},1)
+
+
+
+<!--Difference Between ngRoute and ui-router
+ when ngRoute is used, route is configured with $routeProvider. Where as ui-router is a route configured with $stateProvider and $urlRouterProvider.
+ -->
+ <!-- ngRoute with Example -->
+ var app= angular.module("Demo",["ngRoute"])
+ $routeProvider
+ .when('/home', {
+    templateUrl: 'templates/home.html',
+    controller:"homecontroller"
+})
+   .controller("homecontroller",function($scope){
+      $scope.message="Home Page";
+   })
+
+
+<!-- ui.router with Example -->
+var app= angular.module("Demo",["ui.router"])
+var app=angular.config(function($stateProvider))
+$stateProvider
+.state('home', {
+  url: '/home',
+  templateUrl: 'templates/home.html',
+  controller:"homecontroller".
+  controllerAs:"homectrl"
+})
+   .controller("homecontroller",function($scope){
+      $scope.message="Home Page";
+   })
